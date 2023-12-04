@@ -20,6 +20,11 @@ peso_otimo = calcular_peso_solucao_optima(grafo, tour_otima)
 
 num_cidades = len(grafo.nodes)
 
+if num_cidades <= 15:
+    # Executar algoritmo Branch and Bound
+    resultado = executarAlgoritmo(branchAndBoundTSP, grafo, peso_otimo)
+    salvar_em_csv(resultado, nome_arquivo_csv, nome_dataset, num_cidades)
+
 # Executar algoritmos e salvar resultados
 for algoritmo in [twiceAroundTheTreeTSP, christofidesTSP]:
     resultado = executarAlgoritmo(algoritmo, grafo, peso_otimo)
