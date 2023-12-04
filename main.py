@@ -18,7 +18,9 @@ grafo = carregar_problema_tsp(f'datasets/{nome_dataset}.tsp')
 tour_otima = carregar_solucao_optima(f'datasets/{nome_dataset}.opt.tour')
 peso_otimo = calcular_peso_solucao_optima(grafo, tour_otima)
 
+num_cidades = len(grafo.nodes)
+
 # Executar algoritmos e salvar resultados
-for algoritmo in [twiceAroundTheTreeTSP, christofidesTSP, branchAndBoundTSP]:
+for algoritmo in [twiceAroundTheTreeTSP, christofidesTSP]:
     resultado = executarAlgoritmo(algoritmo, grafo, peso_otimo)
-    salvar_em_csv(resultado, nome_arquivo_csv, nome_dataset)
+    salvar_em_csv(resultado, nome_arquivo_csv, nome_dataset, num_cidades)

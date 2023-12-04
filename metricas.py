@@ -9,7 +9,6 @@ def executarAlgoritmo(algoritmo, dados, peso_otimo):
     resultado_dict = {
         'algoritmo': algoritmo.__name__,
         'peso': None,
-        'caminho': None,
         'tempo_execucao': None,
         'uso_memoria': None,
         'desvio_percentual': None
@@ -29,7 +28,6 @@ def executarAlgoritmo(algoritmo, dados, peso_otimo):
 
         resultado_dict.update({
             'peso': peso_algoritmo,
-            'caminho': resultado[1],
             'tempo_execucao': tempo_execucao,
             'uso_memoria': np.max(uso_memoria),
             'desvio_percentual': desvio_percentual
@@ -40,12 +38,12 @@ def executarAlgoritmo(algoritmo, dados, peso_otimo):
         resultado_dict['peso'] = "NA"
         return resultado_dict
     
-def salvar_em_csv(dados, nome_arquivo, nome_dataset):
+def salvar_em_csv(dados, nome_arquivo, nome_dataset, num_cidades):
     with open(nome_arquivo, mode='a', newline='') as file:
         writer = csv.writer(file)
         # Escreve o cabeçalho se o arquivo estiver vazio
         if file.tell() == 0:
-            writer.writerow(['Dataset', 'Algoritmo', 'Peso', 'Caminho', 'Tempo de Execução', 'Uso de Memória', 'Desvio Percentual'])
+            writer.writerow(['Dataset', 'Número de Cidades', 'Algoritmo', 'Peso', 'Tempo de Execução', 'Uso de Memória', 'Desvio Percentual'])
 
-        writer.writerow([nome_dataset, dados['algoritmo'], dados['peso'], dados['caminho'], 
+        writer.writerow([nome_dataset, num_cidades, dados['algoritmo'], dados['peso'],
                          dados['tempo_execucao'], dados['uso_memoria'], dados['desvio_percentual']])
