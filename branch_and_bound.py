@@ -25,10 +25,10 @@ def encontrarDuasArestasMinimas(lista):
 
 def encontrarLimiteInicial(A):
     limite = 0
-    arestasLimiteIniciais = np.zeros((A.number_of_nodes(), 2), dtype=object)  # Usando object para armazenar listas
-    for i in range(1, A.number_of_nodes() + 1):  # Começando de 1
+    arestasLimiteIniciais = np.zeros((A.number_of_nodes(), 2), dtype=object) 
+    for i in range(1, A.number_of_nodes() + 1):  
         min1, min2 = encontrarDuasArestasMinimas(A[i])
-        arestasLimiteIniciais[i - 1] = [min1, min2]  # Ajuste no índice para armazenamento
+        arestasLimiteIniciais[i - 1] = [min1, min2]  
         limite += min1 + min2
 
     return limite / 2, arestasLimiteIniciais
@@ -40,7 +40,7 @@ def encontrarLimite(A, solucao, arestasLimite, limite):
     soma = limite * 2
 
     for no in solucao[-2:]:
-        no_index = no - 1  # Ajuste para a indexação começando em 1
+        no_index = no - 1 
         if novasArestas[no_index][0] != pesoAresta:
             soma -= novasArestas[no_index][arestasAlteradas[no_index]]
             soma += pesoAresta
@@ -50,7 +50,7 @@ def encontrarLimite(A, solucao, arestasLimite, limite):
 
 def branchAndBoundTSP(A):
     limiteInicial, arestasLimiteIniciais = encontrarLimiteInicial(A)
-    raiz = No(limiteInicial, arestasLimiteIniciais, 0, [1])  # Iniciando com [1]
+    raiz = No(limiteInicial, arestasLimiteIniciais, 0, [1])  
     heap = []
     heappush(heap, raiz)
     melhorCusto = np.inf

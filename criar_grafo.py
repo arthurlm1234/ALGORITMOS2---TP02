@@ -15,6 +15,5 @@ def calcular_peso_solucao_optima(grafo, tour_optima):
     peso_total = 0
     for i in range(len(tour_optima) - 1):
         peso_total += grafo[tour_optima[i]][tour_optima[i + 1]]['weight']
-    # Adiciona o peso para retornar ao ponto de partida
     peso_total += grafo[tour_optima[-1]][tour_optima[0]]['weight']
     return peso_total
